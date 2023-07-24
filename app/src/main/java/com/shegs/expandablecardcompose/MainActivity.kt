@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,10 +27,14 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                         .padding(24.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
                 ) {
-                    ExpandableCard()
+                    ExpandableCard(
+                        title = "My Title",
+                        description = "This are just random text going into this field and i am going to copy and paste it " +
+                                "This are just random text going into this field and i am going to copy and paste it " +
+                                "This are just random text going into this field and i am going to copy and paste it " +
+                                "This are just random text going into this field and i am going to copy and paste it "
+                    )
                 }
 
             }
@@ -50,9 +52,17 @@ fun GreetingPreview() {
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
-                .padding(24.dp)
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            ExpandableCard()
+            ExpandableCard(
+                title = "My Title",
+                description = "This are just random text going into this field and i am going to copy and paste it " +
+                        "This are just random text going into this field and i am going to copy and paste it " +
+                        "This are just random text going into this field and i am going to copy and paste it " +
+                        "This are just random text going into this field and i am going to copy and paste it "
+            )
         }
 
     }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Card
@@ -28,6 +29,8 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.ContentAlpha
 import com.shegs.expandablecardcompose.ui.theme.Shapes
@@ -35,7 +38,17 @@ import com.shegs.expandablecardcompose.ui.theme.Shapes
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun ExpandableCard(){
+fun ExpandableCard(
+    title: String,
+    titleFontSize: TextUnit = MaterialTheme.typography.titleLarge.fontSize,
+    titleFontWeight: FontWeight = FontWeight.Bold,
+    description: String,
+    descriptionFontSize: TextUnit = MaterialTheme.typography.bodyMedium.fontSize,
+    descriptionFontWeight: FontWeight = FontWeight.Normal,
+    descriptionMaxLine: Int = 4,
+    shape: CornerBasedShape = Shapes.medium,
+    padding: Dp = 12.dp
+){
     var expandedState by remember { mutableStateOf(false) }
     val rotationState by animateFloatAsState(
         targetValue = if (expandedState) 180f else 0f)
@@ -49,22 +62,22 @@ fun ExpandableCard(){
                     easing = LinearOutSlowInEasing
                 )
             ),
-        shape = Shapes.medium,
+        shape = shape,
         onClick = { expandedState = !expandedState}
     ) {
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
+                .padding(padding)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "My Title",
-                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Bold,
+                    text = title,
+                    fontSize = titleFontSize,
+                    fontWeight = titleFontWeight,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
@@ -87,17 +100,14 @@ fun ExpandableCard(){
         }
         if(expandedState){
             Text(
-                text = "This are just random text going into this field and i am going to copy and paste it " +
-                    "This are just random text going into this field and i am going to copy and paste it " +
-                    "This are just random text going into this field and i am going to copy and paste it " +
-                    "This are just random text going into this field and i am going to copy and paste it ",
+                text = description,
 
-                fontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                fontWeight = FontWeight.Normal,
-                maxLines = 4,
+                fontSize = descriptionFontSize,
+                fontWeight = descriptionFontWeight,
+                maxLines = descriptionMaxLine,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
-                    .padding(12.dp)
+                    .padding(padding)
             )
 
         }
@@ -108,6 +118,12 @@ fun ExpandableCard(){
 @Composable
 @Preview
 fun ExpandableCardPreview(){
-    ExpandableCard()
+    ExpandableCard(
+        title = "My Title",
+        description = "This are just random text going into this field and i am going to copy and paste it " +
+                "This are just random text going into this field and i am going to copy and paste it " +
+                "This are just random text going into this field and i am going to copy and paste it " +
+                "This are just random text going into this field and i am going to copy and paste it "
+    )
 }
 
