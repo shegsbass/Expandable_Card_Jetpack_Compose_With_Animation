@@ -85,6 +85,20 @@ fun ExpandableCard(){
             }
 
         }
+        if(expandedState){
+            Text(
+                text = "This are just random text going into this field and i am going to copy and paste it " +
+                    "This are just random text going into this field and i am going to copy and paste it " +
+                    "This are just random text going into this field and i am going to copy and paste it " +
+                    "This are just random text going into this field and i am going to copy and paste it ",
+
+                fontSize = MaterialTheme.typography.bodyMedium.fontSize,
+                fontWeight = FontWeight.Normal,
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis
+            )
+
+        }
 
     }
 }
