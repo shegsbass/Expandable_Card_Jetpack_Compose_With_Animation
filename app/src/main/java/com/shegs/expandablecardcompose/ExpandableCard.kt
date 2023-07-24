@@ -45,7 +45,7 @@ fun ExpandableCard(){
             .fillMaxWidth()
             .animateContentSize(
                 animationSpec = tween(
-                    delayMillis = 300,
+                    durationMillis = 300,
                     easing = LinearOutSlowInEasing
                 )
             ),
@@ -95,7 +95,9 @@ fun ExpandableCard(){
                 fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                 fontWeight = FontWeight.Normal,
                 maxLines = 4,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .padding(12.dp)
             )
 
         }
