@@ -2,6 +2,7 @@ package com.shegs.expandablecardcompose
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,7 +24,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.ContentAlpha
@@ -34,6 +37,8 @@ import com.shegs.expandablecardcompose.ui.theme.Shapes
 
 fun ExpandableCard(){
     var expandedState by remember { mutableStateOf(false) }
+    val rotationState by animateFloatAsState(
+        targetValue = if (expandedState) 180f else 0f)
     
     Card(
         modifier = Modifier
@@ -60,6 +65,8 @@ fun ExpandableCard(){
                     text = "My Title",
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
                     fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .weight(6f)
                 )
@@ -67,7 +74,8 @@ fun ExpandableCard(){
                 IconButton(
                     modifier = Modifier
                         .weight(1f)
-                        .alpha(ContentAlpha.medium),
+                        .alpha(ContentAlpha.medium)
+                        .rotate(rotationState),
                     onClick = { expandedState = !expandedState}
                 ) {
                     Icon(
