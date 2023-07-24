@@ -59,11 +59,14 @@ fun ExpandableCard(){
                 Text(
                     text = "My Title",
                     fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .weight(6f)
                 )
 
                 IconButton(
                     modifier = Modifier
+                        .weight(1f)
                         .alpha(ContentAlpha.medium),
                     onClick = { expandedState = !expandedState}
                 ) {
